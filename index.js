@@ -1,6 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
 
 const app = express();
 
@@ -8,6 +9,7 @@ const { PORT, MONGODB_URI } = process.env;
 
 // middleware
 app.use(express.json());
+app.use(bodyParser.json());
 
 // connecting to mongodb and starting the server
 mongoose.connect(MONGODB_URI).then(() => {
@@ -19,9 +21,9 @@ mongoose.connect(MONGODB_URI).then(() => {
 
 // defining the routes
 const authRoutes = require("./routes/auth.routes");
+const homeRoutes = require("./routes/home.routes");
+const privateTaskRoutes = require("./routes/privateTask.routes");
 
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
-
+app.use("/", homeRoutes);
 app.use("/auth", authRoutes);
+app.use("/privatetask", privateTaskRoutes);
