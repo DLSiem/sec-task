@@ -32,22 +32,17 @@ export const Home = () => {
   const completedTodos = todos.filter((todo) => todo.completed);
 
   const onClickDelete = (id) => {
-    console.log(id);
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
   const onEditClick = (id) => {
-    console.log(id);
     setTodos(todos.filter((todo) => todo.id !== id));
     const edit = todos.find((todo) => todo.id === id).title;
     setNewTodo(edit);
   };
 
   const toggleTodoStatus = (id) => {
-    console.log(
-      id,
-      todos.find((todo) => todo.id === id)
-    );
+    3;
     setTodos(
       todos.map((todo) =>
         todo.id === id
@@ -66,7 +61,7 @@ export const Home = () => {
           <input
             type="text"
             className="flex-grow w-full p-2 border border-gray-300 rounded"
-            placeholder="New To Do"
+            placeholder="New Task"
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
           />
@@ -91,22 +86,22 @@ export const Home = () => {
                   className="text-lg mr-2"
                   onClick={() => toggleTodoStatus(todo.id)}
                 >
-                  {todo.completed ? "✅" : "⭕"}
+                  {todo.completed ? "☑️" : "🔳"}
                 </button>
                 <span>{todo.title}</span>
               </div>
               <div className="flex">
                 <button
-                  onClick={() => onClickDelete(todo.id)}
-                  className="text-red-500 ml-1 text-xl"
-                >
-                  🗑️
-                </button>
-                <button
                   onClick={() => onEditClick(todo.id)}
-                  className="text-blue-500 ml-1"
+                  className="text-blue-500 ml-1 border-2"
                 >
                   ✏️
+                </button>
+                <button
+                  onClick={() => onClickDelete(todo.id)}
+                  className="text-red-500 ml-1 text-xl border-2"
+                >
+                  ❌
                 </button>
               </div>
             </div>
@@ -138,22 +133,22 @@ export const Home = () => {
                     onClick={() => toggleTodoStatus(todo.id)}
                     className={`text-lg mr-2`}
                   >
-                    {todo.completed ? "✅" : "⭕"}
+                    {todo.completed ? "☑️" : "🔳"}
                   </button>
                   <span>{todo.title}</span>
                 </div>
                 <div className="flex">
                   <button
-                    onClick={() => onClickDelete(todo.id)}
-                    className="text-red-500 ml-1 text-xl"
-                  >
-                    🗑️
-                  </button>
-                  <button
                     onClick={() => onEditClick(todo.id)}
-                    className="text-blue-500 ml-1"
+                    className="text-blue-500 ml-1 border-2"
                   >
                     ✏️
+                  </button>
+                  <button
+                    onClick={() => onClickDelete(todo.id)}
+                    className="text-red-500 ml-1 text-xl border-2"
+                  >
+                    ❌
                   </button>
                 </div>
               </div>
